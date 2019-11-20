@@ -133,24 +133,25 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         switch (gameState) {
             case START_GAME_STATE:
                 mainCharacter.draw(g);
-                g.setColor(Color.BLACK);
-                g.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-                g.drawString("HP ", 20, 20);
-                g.fillRect(50, 5, mainCharacter.getHp(), 15);
+                g.setColor(Color.lightGray);
+                g.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+                g.drawString("HP ", 30, 30);
+                g.fillRect(60, 15, mainCharacter.getHp(), 20);
                 g.drawString("Tap Spece bar to START", 400, 300);
-                g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 750, 20);
-                g.drawString("SCORE : " + score.getScore(), 900, 20);
+                g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
+                g.drawString("SCORE : " + score.getScore(), 860, 30);
                 break;
             case GAME_PLAYING_STATE:
             case GAME_OVER_STATE:
                 clouds.draw(g);
                 manager.draw(g);
                 mainCharacter.draw(g);
-                g.setColor(Color.BLACK);
-                g.drawString("HP ", 20, 20);
-                g.fillRect(50, 5, mainCharacter.getHp(), 15);
-                g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 750, 20);
-                g.drawString("SCORE : " + score.getScore(), 900, 20);
+                g.setColor(Color.lightGray);
+                g.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+                g.drawString("HP ", 30, 30);
+                g.fillRect(60, 15, mainCharacter.getHp(), 15);
+                g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
+                g.drawString("SCORE : " + score.getScore(), 860, 30);
                 mainCharacter.upScore(score.getScore());
                 if (gameState == GAME_OVER_STATE) {
                     g.drawImage(gameOverButtonImage, 400, 70, null);

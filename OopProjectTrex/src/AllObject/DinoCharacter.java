@@ -16,7 +16,7 @@ public class DinoCharacter {
 
     public int score = 0;
     public static int LAND_POSY = 310;
-    public float GRAVITY = 0.2f;
+    public float GRAVITY = 0.3f;
 
     private static final int NORMAL_RUN = 0;
     private static final int JUMPING = 1;
@@ -120,7 +120,7 @@ public class DinoCharacter {
             if (jumpSound != null) {
                 jumpSound.play();
             }
-            GRAVITY = 0.2f;
+            GRAVITY = 0.3f;
             speedY = -7.5f;
             posY += speedY;
             state = JUMPING;
@@ -131,7 +131,7 @@ public class DinoCharacter {
 
         if (isDown) {
             state = DOWN_RUN;
-            GRAVITY = 0.4f;
+            GRAVITY = 0.5f;
         } else {
             state = NORMAL_RUN;
         }
