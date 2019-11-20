@@ -88,7 +88,7 @@ public class ObjectGameManager {
                             System.out.println(element.numberOfPit);
                         }
                         else if(element.numberOfPit == 0 && element.posX <= mainCharacter.getPosX() + mainCharacter.getDinoWidth() -20 && element.posX + land1.getWidth() >= mainCharacter.getPosX()){
-                            mainCharacter.setLAND_POSY(400);
+                            mainCharacter.setLAND_POSY(310);
                             System.out.println(" ");
                         }
 			previousPosX = element.posX;

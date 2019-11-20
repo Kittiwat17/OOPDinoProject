@@ -8,6 +8,7 @@ public class GameWindow extends JFrame {
 	
 	public static final int SCREEN_WIDTH = 1000;
 	private GameScreen gameScreen;
+        
 	public GameWindow() {
 		super("Java T-Rex game");
 		setSize(SCREEN_WIDTH, 600);
@@ -20,14 +21,10 @@ public class GameWindow extends JFrame {
 		add(gameScreen);
 	}
 	
-	public void startGame() {
+	public void startGame(String n) {
 		setVisible(true);
+                gameScreen.getNameFirst(n);
 		gameScreen.startGame();
-	}
-	
-	public static void main(String args[]) {
-		(new GameWindow()).startGame();
-                
 	}
         
 }
