@@ -15,12 +15,22 @@ import AllObject.DinoCharacter;
 import AllObject.ObjectGameManager;
 import AllObject.RunnerScore;
 import OptionClass.Resource;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
-
+    
+    private int countStage = 0;
+    
+    private BufferedImage bg1;
+    private BufferedImage bg2;
+        private double backgroundPoint = 0;
+        private BufferedImage[] Background = new BufferedImage[12];
 	private static final int START_GAME_STATE = 0;
 	private static final int GAME_PLAYING_STATE = 1;
 	private static final int GAME_OVER_STATE = 2;
@@ -39,14 +49,23 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         
         //array เก็บจำนวนobject ของ land
         
-        public static int enemyList = 12;
         
 	private int gameState = START_GAME_STATE;
 
 	private BufferedImage replayButtonImage;
 	private BufferedImage gameOverButtonImage;
 
+        
+        private AudioClip scoreUpSound;
 	public GameScreen() {
+            
+            bg1 = Resource.getResouceImage("data/bg1.png");
+            bg2 = Resource.getResouceImage("data/bg2.png");
+            
+            Background[0] = bg1;
+            Background[1] = bg2;
+            Background[2] = bg1;
+            Background[3] = bg2;
             
             mainCharacter = new DinoCharacter();
             manager = new ObjectGameManager(GameWindow.SCREEN_WIDTH, mainCharacter);
@@ -57,7 +76,13 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
            
             clouds = new Clouds(GameWindow.SCREEN_WIDTH, mainCharacter);
             score = new RunnerScore();
-                
+            
+            try {
+                scoreUpSound =  Applet.newAudioClip(new URL("file","","data/scoreup.wav"));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(GameScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
 	}
 
 	public void startGame() {
@@ -68,15 +93,28 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 	}
 
 	public void gameUpdate() {
+            
 		if (gameState == GAME_PLAYING_STATE) {
 			clouds.update();
 			manager.update();
 			mainCharacter.update();
+                        backgroundPoint = -(score.getScore() % 1501) /3;
+                        if(score.getScore() >= 4500){
+                            countStage = 3;
+                        }
+                        else if(score.getScore() >= 3000){
+                            countStage = 2;
+                        }
+                        else if(score.getScore() >= 1500){
+                            countStage = 1;
+                        }
+			else{
+                            countStage = 0;
+                        }
                         
-                        
-			
 			if (manager.isCollision()) {
 				mainCharacter.playDeadSound();
+                                
 				gameState = GAME_OVER_STATE;
 				mainCharacter.dead(true);
                                 runScore.suspend();
@@ -86,9 +124,9 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 	}
 
 	public void paint(Graphics g) {
-		g.setColor(Color.decode("#f7f7f7"));
+		g.setColor(Color.decode("#c0c0c0"));
 		g.fillRect(0, 0, getWidth(), getHeight());
-
+                g.drawImage(Background[countStage], (int) backgroundPoint, 0, null);
 		switch (gameState) {
 		case START_GAME_STATE:
 			mainCharacter.draw(g);
@@ -100,6 +138,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 			mainCharacter.draw(g);
 			g.setColor(Color.BLACK);
 			g.drawString("HI " + score.getScore(), 500, 20);
+                        mainCharacter.upScore(score.getScore());
 			if (gameState == GAME_OVER_STATE) {
 				g.drawImage(gameOverButtonImage, (getWidth()/2)-98, 30, null);
 				g.drawImage(replayButtonImage, 283, 50, null);
@@ -124,9 +163,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 		long lag = 0;
 
 		while (true) {
-                    fps += RunnerScore.getTimeUpdate();
+                    fps += RunnerScore.getTimeUpdate() * 2;
 			gameUpdate();
 			repaint();
+                        
 			endProcessGame = System.nanoTime();
 			elapsed = (lastTime + msPerFrame - System.nanoTime());
 			msSleep = (int) (elapsed / 1000000);
@@ -144,6 +184,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+        public int getCountStage(){
+            return countStage;
+        }
+        
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (!isKeyPressed) {
@@ -157,7 +201,9 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 				break;
 			case GAME_PLAYING_STATE:
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                                    
 					mainCharacter.jump();
+                                        
 				} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 					mainCharacter.down(true);
 				}

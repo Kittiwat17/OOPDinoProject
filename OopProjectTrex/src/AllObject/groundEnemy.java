@@ -7,9 +7,9 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class Cactus extends Enemy {
+public class groundEnemy extends Enemy {
 	
-	public static final int Y_LAND = 295;
+	public static final int Y_LAND = 350;
 	
 	private double posX;
 	private int width;
@@ -21,7 +21,7 @@ public class Cactus extends Enemy {
 	private Rectangle rectBound;
 	private BufferedImage listCactus[] = new BufferedImage[2];
         
-	public Cactus(DinoCharacter mainCharacter, int posX) {
+	public groundEnemy(DinoCharacter mainCharacter, int posX) {
                 
                 listCactus[0] = Resource.getResouceImage("data/cactus1.png");
                 listCactus[1] = Resource.getResouceImage("data/cactus2.png");

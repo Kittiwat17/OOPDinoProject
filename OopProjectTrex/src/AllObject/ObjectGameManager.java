@@ -22,7 +22,7 @@ public class ObjectGameManager {
     
     public int countEnemy = 0;
     
-    public static final int LAND_POSY = 273;
+    public static final int LAND_POSY = 350;
     
     private List<landBox> listLand;
     private BufferedImage land1;
@@ -42,7 +42,6 @@ public class ObjectGameManager {
     private ArrayList<Enemy> listEnemies;
 	
     private int boxWidth = 100;
-    private ArrayList<Cactus> listEnemie;
     private blankBox blankBox;
         
         
@@ -89,7 +88,7 @@ public class ObjectGameManager {
                             System.out.println(element.numberOfPit);
                         }
                         else if(element.numberOfPit == 0 && element.posX <= mainCharacter.getPosX() + mainCharacter.getDinoWidth() -20 && element.posX + land1.getWidth() >= mainCharacter.getPosX()){
-                            mainCharacter.setLAND_POSY(250);
+                            mainCharacter.setLAND_POSY(400);
                             System.out.println(" ");
                         }
 			previousPosX = element.posX;
@@ -110,23 +109,23 @@ public class ObjectGameManager {
                         if(lType == 0){
                             countEnemy += 1;
                             if(countEnemy < 3){
-                                eType = 3;
+                                eType = 0;
                             }
-                            else if(eType == 1 || eType == 2){
-                                eType = 3;
+                            else if(eType != 0){
+                                eType = 0;
                                 lType = 2;
                                 countEnemy = 0;
                             }
-                            else if(eType != 1 && eType != 2){
+                            else if(eType == 0){
                                 lType = 1;
                                 countEnemy = 0;
                             }
                             
                         }
-                        else if(eType == 1 || eType == 2){
+                        else if(eType != 0){
                             countEnemy += 1;
                             if(countEnemy >= 3){
-                                eType = 3;
+                                eType = 0;
                                 countEnemy = 0;
                             }
                         }
@@ -172,15 +171,15 @@ public class ObjectGameManager {
 	}
     
     public Enemy createEnemy(int type, int posX){
-            if(type == 1){
-                return new Cactus(mainCharacter, posX);
+            if(type == 0){
+                return new blankBox(mainCharacter, posX); 
                 
             }
-            if(type == 2){
+            if(type == 1){
                 return new AirEnemy(mainCharacter, posX);
             }
             else{
-                return new blankBox(mainCharacter, posX);
+                return new groundEnemy(mainCharacter, posX);
             }
         }
     
@@ -209,6 +208,19 @@ public class ObjectGameManager {
             }
 	}
 	return false;
+    }
+    
+    public void newStage(){
+        listEnemies.clear();
+        listLand.clear();
+        int numberOfImageLand = 1000 / land1.getWidth() + 2;
+            for(int i = 0; i < numberOfImageLand; i++) {
+			landBox imageLand = new landBox();
+			imageLand.posX = i * land1.getWidth();
+			setImageLand(imageLand ,1);
+			listLand.add(imageLand);
+                        listEnemies.add(createEnemy(0, i * 100));
+		}
     }
     
     public void reset(){

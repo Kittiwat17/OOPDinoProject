@@ -20,7 +20,7 @@ public class EnemiesManager {
         private ArrayList<Enemy> listEnemies;
 	
         private int boxWidth = 100;
-        private ArrayList<Cactus> listEnemie;
+        private ArrayList<groundEnemy> listEnemie;
         private blankBox blankBox;
         int previousPosX = 1100;
 	public EnemiesManager(DinoCharacter mainCharacter) {
@@ -66,7 +66,7 @@ public class EnemiesManager {
         
         public Enemy createEnemy(int type, int posX){
             if(type == 1){
-                return new Cactus(mainCharacter, posX);
+                return new groundEnemy(mainCharacter, posX);
                 
             }
             else{

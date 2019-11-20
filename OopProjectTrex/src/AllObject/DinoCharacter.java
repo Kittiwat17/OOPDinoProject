@@ -13,8 +13,8 @@ import OptionClass.Animation;
 import OptionClass.Resource;
 
 public class DinoCharacter {
-
-	public static int LAND_POSY = 223;
+    public  int score = 0;
+	public static int LAND_POSY = 310;
 	public static final float GRAVITY = 0.2f;
 	
 	private static final int NORMAL_RUN = 0;
@@ -28,7 +28,7 @@ public class DinoCharacter {
 	private float speedY;
 	private Rectangle rectBound;
 	
-	public int score = 0;
+	private int countJump = 0; 
 	
 	private int state = NORMAL_RUN;
 	
@@ -102,6 +102,7 @@ public class DinoCharacter {
                 this.setSpeedX(this.getSpeedX());
 		if(posY >= LAND_POSY) {
 			posY = LAND_POSY;
+                        countJump = 0;
 			if(state != DOWN_RUN) {
 				state = NORMAL_RUN;
 			}
@@ -112,7 +113,8 @@ public class DinoCharacter {
 	}
 	
 	public void jump() {
-		if(posY >= LAND_POSY) {
+		if(posY <= LAND_POSY && countJump < 2) {
+                    countJump += 1;
 			if(jumpSound != null) {
 				jumpSound.play();
 			}
@@ -123,9 +125,7 @@ public class DinoCharacter {
 	}
 	
 	public void down(boolean isDown) {
-		if(state == JUMPING) {
-			return;
-		}
+		
 		if(isDown) {
 			state = DOWN_RUN;
 		} else {
@@ -159,15 +159,18 @@ public class DinoCharacter {
 	
 	public void reset() {
 		posY = LAND_POSY;
-                score = 0;
+                
 	}
 	
 	public void playDeadSound() {
 		deadSound.play();
 	}
+        
+        public void playScoreSound(){
+            scoreUpSound.play();
+        }
 	
-	public void upScore() {
-		score += 1;
+	public void upScore(int score) {
 		if(score % 100 == 0) {
 			scoreUpSound.play();
 		}
