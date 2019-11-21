@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class groundEnemy extends Enemy {
 	
-	public static final int Y_LAND = 350;
+	public static final int Y_LAND = 420;
 	
 	private double posX;
 	private int width;
@@ -19,12 +19,13 @@ public class groundEnemy extends Enemy {
 	private DinoCharacter mainCharacter;
 	private int enemyCounts = 0;
 	private Rectangle rectBound;
-	private BufferedImage listCactus[] = new BufferedImage[2];
+	private BufferedImage listCactus[] = new BufferedImage[3];
         
 	public groundEnemy(DinoCharacter mainCharacter, int posX) {
                 
-                listCactus[0] = Resource.getResouceImage("data/cactus1.png");
-                listCactus[1] = Resource.getResouceImage("data/cactus2.png");
+                listCactus[0] = Resource.getResouceImage("Game Element/bush1.png");
+                listCactus[1] = Resource.getResouceImage("Game Element/stone1.png");
+                listCactus[2] = Resource.getResouceImage("Game Element/Tree1.png");
                 int numRandom = getImageNum();
 		
 		this.image = listCactus[numRandom];
@@ -40,13 +41,16 @@ public class groundEnemy extends Enemy {
         
         private int getImageNum() {
 		Random rand = new Random();
-		int type = rand.nextInt(2);
+		int type = rand.nextInt(3);
 		if(type == 0){
                     return 0;
                 }
-		else{
-			return 1;
+                else if(type == 1){
+                    return 1;
 		}
+                else{
+                    return 2;
+                }
 	}
 	
 	public void update(double posX) {
@@ -66,10 +70,10 @@ public class groundEnemy extends Enemy {
 	
 	public Rectangle getBound() {
 		rectBound = new Rectangle();
-		rectBound.x = (int) posX + (image.getWidth() - width)/2;
-		rectBound.y = Y_LAND - image.getHeight() + (image.getHeight() - height)/2;
-		rectBound.width = width;
-		rectBound.height = height;
+		rectBound.x = (int) posX + (image.getWidth() - width)/2 + 10;
+		rectBound.y = Y_LAND - image.getHeight() + (image.getHeight() - height)/2 +20;
+		rectBound.width = width - 20;
+		rectBound.height = height - 20;
 		return rectBound;
 	}
 

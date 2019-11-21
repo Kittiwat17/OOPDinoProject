@@ -15,7 +15,7 @@ import OptionClass.Resource;
 public class DinoCharacter {
 
     public int score = 0;
-    public static int LAND_POSY = 310;
+    public static int LAND_POSY = 370;
     public float GRAVITY = 0.3f;
 
     private static final int NORMAL_RUN = 0;
@@ -75,6 +75,7 @@ public class DinoCharacter {
     }
 
     public void setSpeedX(double speedX) {
+       
         this.speedX = speedX;
     }
 
@@ -131,7 +132,7 @@ public class DinoCharacter {
 
         if (isDown) {
             state = DOWN_RUN;
-            GRAVITY = 0.5f;
+            GRAVITY = 2;
         } else {
             state = NORMAL_RUN;
         }
