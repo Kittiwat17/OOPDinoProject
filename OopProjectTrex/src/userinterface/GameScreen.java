@@ -218,7 +218,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     }
                     break;
                 case GAME_PLAYING_STATE:
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP) {
                         mainCharacter.jump();
 
                     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
