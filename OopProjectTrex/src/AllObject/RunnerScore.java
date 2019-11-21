@@ -21,6 +21,7 @@ public class RunnerScore implements Runnable{
     public void run() {
         while (true) {            
             score = score + 1;
+            
             try {
                 Thread.sleep(runnerTime);
             } catch (InterruptedException ex) {

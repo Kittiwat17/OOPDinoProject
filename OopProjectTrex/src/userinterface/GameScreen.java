@@ -53,6 +53,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private BufferedImage replayButtonImage;
     private BufferedImage gameOverButtonImage;
 
+    private int speedGameM = 10;
+    private int speedGameN = 1000;
     public GameScreen() {
 
         bg1 = Resource.getResouceImage("data/bg1.png");
@@ -114,6 +116,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
                 mainCharacter.setHp(mainCharacter.getHp() - 5);
+                mainCharacter.setSpeedX(mainCharacter.getSpeedX() + 0.02);
+                
             }
             if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() == 0) {
                 mainCharacter.playDeadSound();
@@ -181,6 +185,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         long lag = 0;
 
         while (true) {
+            mainCharacter.setSpeedX(score.getScore()*2/1000 + 3);
             fps += RunnerScore.getTimeUpdate() * 2;
             gameUpdate();
             repaint();
@@ -199,6 +204,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 e.printStackTrace();
             }
             lastTime = System.nanoTime();
+           
         }
     }
 
@@ -218,7 +224,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     }
                     break;
                 case GAME_PLAYING_STATE:
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP) {
                         mainCharacter.jump();
 
                     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
