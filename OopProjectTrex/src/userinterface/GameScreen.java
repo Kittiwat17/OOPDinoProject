@@ -137,10 +137,13 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         switch (gameState) {
             case START_GAME_STATE:
                 mainCharacter.draw(g);
-                g.setColor(Color.lightGray);
+                g.setColor(Color.white);
                 g.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-                g.drawString("HP ", 30, 30);
-                g.fillRect(60, 15, mainCharacter.getHp(), 20);
+                g.drawString("HP ", 30, 30);g.setColor(Color.white);
+                g.fillRect(60, 14, 406, 21);
+                g.setColor(Color.green);
+                g.fillRect(63, 17, mainCharacter.getHp(), 15);
+                g.setColor(Color.white);
                 g.drawString("Tap Spece bar to START", 400, 300);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
                 g.drawString("SCORE : " + score.getScore(), 860, 30);
@@ -150,10 +153,20 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 clouds.draw(g);
                 manager.draw(g);
                 mainCharacter.draw(g);
-                g.setColor(Color.lightGray);
+                g.setColor(Color.white);
                 g.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-                g.drawString("HP ", 30, 30);
-                g.fillRect(60, 15, mainCharacter.getHp(), 15);
+                g.drawString("HP ", 30, 30);g.setColor(Color.white);
+                g.fillRect(60, 14, 406, 21);
+                if (mainCharacter.getHp() > 265) {
+                    g.setColor(Color.green);
+                } else if (mainCharacter.getHp() > 130 && mainCharacter.getHp() <= 265) {
+                    g.setColor(Color.orange);
+                } 
+                else if (mainCharacter.getHp() > 0 && mainCharacter.getHp() <= 130) {
+                    g.setColor(Color.red);
+                }
+                g.fillRect(63, 17, mainCharacter.getHp(), 15);
+                g.setColor(Color.white);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
                 g.drawString("SCORE : " + score.getScore(), 860, 30);
                 mainCharacter.upScore(score.getScore());

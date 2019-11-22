@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 /**
@@ -69,6 +71,27 @@ public class StartWindow extends JFrame implements ActionListener{
 //        add(sp);
         
         start.addActionListener(this);
+        n.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+            }
+
+            public void keyTyped(KeyEvent e) {
+            }
+
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (n.getText() != null) {
+                        name = n.getText();
+                    } else {
+                        name = "";
+                    }
+                    gameWindow = new GameWindow();
+                    gameWindow.startGame(name);
+                    gameWindow.setVisible(true);
+                    dispose();
+                }
+            }
+        });
     }
     
     public void startPage() {
