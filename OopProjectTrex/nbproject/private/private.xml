@@ -3,21 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/RunnerScore.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/EnemiesManager.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/userinterface/GameWindow.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/OptionClass/Resource.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/Enemy.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/landBox.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/ObjectGameManager.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/Clouds.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/AirEnemy.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/OptionClass/Animation.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/groundEnemy.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/blankBox.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/userinterface/GameScreen.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/Land.java</file>
-            <file>file:/Users/memory/NetBeansProjects/OopProjectTrex/src/AllObject/DinoCharacter.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/AllObject/AirEnemy.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/AllObject/groundEnemy.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/AllObject/landBox.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/AllObject/ObjectGameManager.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/userinterface/StartWindow.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/userinterface/GameScreen.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/AllObject/RunnerScore.java</file>
+            <file>file:/Users/memory/Documents/GitHub/OOPDinoProject/OopProjectTrex/src/AllObject/DinoCharacter.java</file>
         </group>
     </open-files>
 </project-private>
