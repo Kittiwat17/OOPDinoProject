@@ -112,14 +112,18 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 nameHs = name;
                 highscore = score.getScore();
             }
+            
+            if (score.getScore() % 100 == 0) {
+                mainCharacter.playScoreSound();
+            }
 
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
-                mainCharacter.setHp(mainCharacter.getHp() - 5);
+                mainCharacter.setHp(mainCharacter.getHp() - 3);
                 mainCharacter.setSpeedX(mainCharacter.getSpeedX() + 0.1);
                 
             }
-            if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() == 0) {
+            if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() <= 0) {
                 mainCharacter.playDeadSound();
 
                 gameState = GAME_OVER_STATE;
@@ -169,11 +173,11 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.setColor(Color.white);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
                 g.drawString("SCORE : " + score.getScore(), 860, 30);
-                mainCharacter.upScore(score.getScore());
                 if (gameState == GAME_OVER_STATE) {
-                    g.drawImage(gameOverButtonImage, 400, 70, null);
-                    g.drawString("You have " + score.getScore() + " score", 435, 110);
-                    g.drawImage(replayButtonImage, 480, 130, null);
+                    g.drawImage(gameOverButtonImage, 400, 180, null);
+                    g.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+                    g.drawString("You have " + score.getScore() + " score", 400, 220);
+                    g.drawImage(replayButtonImage, 480, 240, null);
                     if (score.getScore() == highscore) {
                         HighScoreStorage.saveName(nameHs);
                         HighScoreStorage.saveHighscore(highscore);

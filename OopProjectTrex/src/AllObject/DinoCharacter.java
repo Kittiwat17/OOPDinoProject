@@ -175,12 +175,6 @@ public class DinoCharacter {
         scoreUpSound.play();
     }
 
-    public void upScore(int score) {
-        if (score % 100 == 0) {
-            scoreUpSound.play();
-        }
-    }
-
     public void setLAND_POSY(int g) {
         LAND_POSY = g;
     }
