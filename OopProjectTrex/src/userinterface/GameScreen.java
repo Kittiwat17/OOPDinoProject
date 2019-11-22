@@ -21,7 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
-    private int countStage = 0;
+    public static int countStage = 0;
     
     private String name;
     private String nameHs;
@@ -57,7 +57,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private int speedGameN = 1000;
     public GameScreen() {
 
-        bg1 = Resource.getResouceImage("data/bg1.png");
+        bg1 = Resource.getResouceImage("Game Element/bg1.jpg");
         bg2 = Resource.getResouceImage("data/bg2.png");
 
         Background[0] = bg1;
@@ -116,7 +116,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
                 mainCharacter.setHp(mainCharacter.getHp() - 5);
-                mainCharacter.setSpeedX(mainCharacter.getSpeedX() + 0.02);
+                mainCharacter.setSpeedX(mainCharacter.getSpeedX() + 0.1);
                 
             }
             if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() == 0) {

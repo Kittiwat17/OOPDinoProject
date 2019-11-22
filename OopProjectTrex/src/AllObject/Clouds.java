@@ -17,7 +17,7 @@ public class Clouds {
 	
 	public Clouds(int width, DinoCharacter mainCharacter) {
 		this.mainCharacter = mainCharacter;
-		cloud = Resource.getResouceImage("data/cloud.png");
+		cloud = Resource.getResouceImage("Game Element/Cloud1.png");
 		listCloud = new ArrayList<ImageCloud>();
 		
 		ImageCloud imageCloud = new ImageCloud();

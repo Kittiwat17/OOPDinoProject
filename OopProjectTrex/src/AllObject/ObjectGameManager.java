@@ -40,6 +40,10 @@ public class ObjectGameManager {
     private BufferedImage pitOnly;
     private BufferedImage pitL;
     private BufferedImage pitR;
+    
+    private BufferedImage lavaOnly;
+    private BufferedImage lavaL;
+    private BufferedImage lavaR;
     private Random rand;
 	
     private ArrayList<Enemy> listEnemies;
@@ -51,12 +55,16 @@ public class ObjectGameManager {
     public ObjectGameManager(int width, DinoCharacter mainCharacter){
         this.mainCharacter = mainCharacter;
         land1 = Resource.getResouceImage("Game Element/Floor1.jpg");
-		land2 = Resource.getResouceImage("data/land-2.png");
+		land2 = Resource.getResouceImage("Game Element/Floor2.jpg");
 		land3 = Resource.getResouceImage("data/land-3.png");
                 
-                pitOnly = Resource.getResouceImage("Game Element/Hole1.jpg");
-                pitL = Resource.getResouceImage("Game Element/HoleL1.jpg");
-                pitR = Resource.getResouceImage("Game Element/HoleR1.jpg");
+                pitOnly = Resource.getResouceImage("Game Element/Hole1.png");
+                pitL = Resource.getResouceImage("Game Element/HoleL1.png");
+                pitR = Resource.getResouceImage("Game Element/HoleR1.png");
+                
+                lavaOnly = Resource.getResouceImage("Game Element/lava1B.png");
+                lavaL = Resource.getResouceImage("Game Element/lava2Bver1.png");
+                lavaR = Resource.getResouceImage("Game Element/lava2Bver2.png");
 		int numberOfImageLand = width / land1.getWidth() + 2;
                 listEnemies = new ArrayList<Enemy>();
 		listLand = new ArrayList<landBox>();
@@ -85,8 +93,15 @@ public class ObjectGameManager {
 
 			landBox element = itr.next();
                         if(element.numberOfPit != 0 && pre.numberOfPit != 0){
-                            pre.image = pitL;
-                            element.image = pitR;
+                            if(GameScreen.countStage == 0){
+                               pre.image = pitL;
+                                element.image = pitR; 
+                            }
+                            else if(GameScreen.countStage == 1){
+                               pre.image = lavaL;
+                                element.image = lavaR; 
+                            }
+                            
                         }
 			element.posX = previousPosX + land1.getWidth();
                        
@@ -158,7 +173,8 @@ public class ObjectGameManager {
 		
                 int typeLand = type;
                 
-		if(typeLand == 0) {
+		if(GameScreen.countStage == 0){
+                    if(typeLand == 0) {
                     pitCount += 1;
                     if(pitCount >= 3){
                         setImageLand(imgLand, randomNumber(3) + 1);
@@ -180,6 +196,31 @@ public class ObjectGameManager {
                     	imgLand.image = land1;
                         
 		}
+                }
+                else if(GameScreen.countStage == 1){
+                    if(typeLand == 0) {
+                    pitCount += 1;
+                    if(pitCount >= 3){
+                        setImageLand(imgLand, randomNumber(3) + 1);
+                        pitCount = 0;                     
+                    }
+                    else{
+                        imgLand.image = lavaOnly;
+                        imgLand.numberOfPit = pitCount;
+                        
+                    }
+		} else if(typeLand == 1) {
+                        pitCount = 0;
+			imgLand.image = land2;
+		} else if(typeLand == 2) {
+                        pitCount = 0;
+			imgLand.image = land2;
+		}  else {
+                        pitCount = 0;
+                    	imgLand.image = land2;
+                        
+		}
+                }
 	}
     
     public Enemy createEnemy(int type, int posX){

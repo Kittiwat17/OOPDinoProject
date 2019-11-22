@@ -26,8 +26,8 @@ public class AirEnemy extends Enemy {
         private Animation flyAnim;
 	public AirEnemy(DinoCharacter mainCharacter, int posX) {
             flyAnim = new Animation(90);
-            flyAnim.addFrame(Resource.getResouceImage("data/main-character1.png"));
-            flyAnim.addFrame(Resource.getResouceImage("data/main-character2.png"));    
+            flyAnim.addFrame(Resource.getResouceImage("Game Element/Mons1.png"));
+            flyAnim.addFrame(Resource.getResouceImage("Game Element/Mons2.png"));    
             
             
                 listCactus[0] = Resource.getResouceImage("data/cactus1.png");
@@ -76,9 +76,9 @@ public class AirEnemy extends Enemy {
 	public Rectangle getBound() {
 		rectBound = new Rectangle();
 		rectBound.x = (int) posX + (flyAnim.getFrame().getWidth() - width)/2;
-		rectBound.y = Y_LAND - flyAnim.getFrame().getHeight() + (flyAnim.getFrame().getHeight() - height)/2;
+		rectBound.y = Y_LAND - flyAnim.getFrame().getHeight() + (flyAnim.getFrame().getHeight() - height)/2 + 10;
 		rectBound.width = width;
-		rectBound.height = height;
+		rectBound.height = height - 20;
 		return rectBound;
 	}
 
