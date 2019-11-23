@@ -19,7 +19,7 @@ public class AirEnemy extends Enemy {
 	
 	private BufferedImage image;
 	private DinoCharacter mainCharacter;
-	private int enemyCounts = 0;
+
 	private Rectangle rectBound;
 	private BufferedImage listMons[][] = new BufferedImage[4][2];
         
@@ -64,11 +64,10 @@ public class AirEnemy extends Enemy {
 	}
 	
 	public void draw(Graphics g) {
-            if(enemyCounts == 0){
+       
                 g.drawImage(flyAnim.getFrame(), (int) posX, Y_LAND - flyAnim.getFrame().getHeight(), null);
                
-		
-            }
+	
 		
 		
 	}

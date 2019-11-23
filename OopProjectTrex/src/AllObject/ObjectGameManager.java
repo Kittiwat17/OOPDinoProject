@@ -33,9 +33,7 @@ public class ObjectGameManager {
     
     private DinoCharacter mainCharacter;
     
-    
-    
-    private BufferedImage blank;
+   
     private BufferedImage pitList[][] = new BufferedImage[4][3];
     
     private Random rand;
