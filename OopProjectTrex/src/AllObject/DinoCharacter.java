@@ -14,9 +14,9 @@ import OptionClass.Resource;
 
 public class DinoCharacter {
 
-   
+    public int score = 0;
     public static int LAND_POSY = 370;
-    public float GRAVITY = 0.2f;
+    public float GRAVITY = 0.3f;
 
     private static final int NORMAL_RUN = 0;
     private static final int JUMPING = 1;
@@ -122,7 +122,7 @@ public class DinoCharacter {
                 jumpSound.play();
             }
             GRAVITY = 0.3f;
-            speedY = -8.5f;
+            speedY = -7.5f;
             posY += speedY;
             state = JUMPING;
         }

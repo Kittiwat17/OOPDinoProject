@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-import userinterface.GameScreen;
 
 public class AirEnemy extends Enemy {
 	
@@ -19,21 +18,20 @@ public class AirEnemy extends Enemy {
 	
 	private BufferedImage image;
 	private DinoCharacter mainCharacter;
-
+	private int enemyCounts = 0;
 	private Rectangle rectBound;
-	private BufferedImage listMons[][] = new BufferedImage[4][2];
+	private BufferedImage listCactus[] = new BufferedImage[2];
         
         
         private Animation flyAnim;
 	public AirEnemy(DinoCharacter mainCharacter, int posX) {
-            listMons[0][0] = Resource.getResouceImage("Game Element/Mons1.png");
-                listMons[0][1] = Resource.getResouceImage("Game Element/Mons2.png");
             flyAnim = new Animation(90);
-            flyAnim.addFrame(listMons[GameScreen.countStage][0]);
-            flyAnim.addFrame(listMons[GameScreen.countStage][1]);    
+            flyAnim.addFrame(Resource.getResouceImage("Game Element/Mons1.png"));
+            flyAnim.addFrame(Resource.getResouceImage("Game Element/Mons2.png"));    
             
             
-                
+                listCactus[0] = Resource.getResouceImage("data/cactus1.png");
+                listCactus[1] = Resource.getResouceImage("data/cactus2.png");
                 int numRandom = randomLandY();
 		
 		this.Y_LAND = numRandom;
@@ -51,10 +49,10 @@ public class AirEnemy extends Enemy {
 		Random rand = new Random();
 		int type = rand.nextInt(2);
 		if(type == 0){
-                    return 330;
+                    return 200;
                 }
 		else{
-			return 390;
+			return 220;
 		}
 	}
 	
@@ -64,10 +62,13 @@ public class AirEnemy extends Enemy {
 	}
 	
 	public void draw(Graphics g) {
-       
+            if(enemyCounts == 0){
                 g.drawImage(flyAnim.getFrame(), (int) posX, Y_LAND - flyAnim.getFrame().getHeight(), null);
                
-	
+		g.setColor(Color.red);
+                Rectangle bound = getBound();
+		g.drawRect(bound.x, bound.y, bound.width, bound.height);
+            }
 		
 		
 	}

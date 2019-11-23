@@ -7,7 +7,6 @@ package userinterface;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -29,12 +28,11 @@ public class StartWindow extends JFrame implements ActionListener{
     private JLabel lb;
     private JTextField n;
     private JButton start;
-    
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
     public StartWindow() {
         super("Dino Runner !!");
         setSize(SCREEN_WIDTH, 600);
-        setLocation(screenSize.width / 2 - SCREEN_WIDTH / 2, screenSize.height / 2 - 300);
+        setLocation(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         
