@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 
 /**
@@ -71,7 +72,7 @@ public class StartWindow extends JFrame implements ActionListener{
 //        add(sp);
         
         start.addActionListener(this);
-        n.addKeyListener(new KeyAdapter() {
+        n.addKeyListener(new KeyListener() {
             public void keyReleased(KeyEvent e) {
             }
 
