@@ -49,10 +49,10 @@ public class AirEnemy extends Enemy {
 		Random rand = new Random();
 		int type = rand.nextInt(2);
 		if(type == 0){
-                    return 200;
+                    return 330;
                 }
 		else{
-			return 220;
+			return 380;
 		}
 	}
 	

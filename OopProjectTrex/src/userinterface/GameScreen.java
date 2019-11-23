@@ -115,7 +115,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 highscore = (int) scores;
             }
             
-            if (scores % 100 == 0) {
+            if ((int) scores % 100 == 0) {
                 mainCharacter.playScoreSound();
             }
 

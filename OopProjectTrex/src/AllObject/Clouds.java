@@ -11,13 +11,15 @@ import OptionClass.Resource;
 
 public class Clouds {
 	private List<ImageCloud> listCloud;
-	private BufferedImage cloud;
+	private BufferedImage cloud1;
+        private BufferedImage cloud2;
 	
 	private DinoCharacter mainCharacter;
 	
 	public Clouds(int width, DinoCharacter mainCharacter) {
 		this.mainCharacter = mainCharacter;
-		cloud = Resource.getResouceImage("Game Element/Cloud1.png");
+		cloud1 = Resource.getResouceImage("Game Element/Cloud1.png");
+                cloud2 = Resource.getResouceImage("Game Element/Cloud2.png");
 		listCloud = new ArrayList<ImageCloud>();
 		
 		ImageCloud imageCloud = new ImageCloud();
@@ -54,7 +56,7 @@ public class Clouds {
 			ImageCloud element = itr.next();
 			element.posX -= mainCharacter.getSpeedX()/8;
 		}
-		if(firstElement.posX < -cloud.getWidth()) {
+		if(firstElement.posX < - cloud1.getWidth()) {
 			listCloud.remove(firstElement);
 			firstElement.posX = GameWindow.SCREEN_WIDTH;
 			listCloud.add(firstElement);
@@ -63,7 +65,7 @@ public class Clouds {
 	
 	public void draw(Graphics g) {
 		for(ImageCloud imgLand : listCloud) {
-			g.drawImage(cloud, (int) imgLand.posX, imgLand.posY, null);
+			g.drawImage(cloud1, (int) imgLand.posX, imgLand.posY, null);
 		}
 	}
 	
