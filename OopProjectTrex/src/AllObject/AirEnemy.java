@@ -54,7 +54,7 @@ public class AirEnemy extends Enemy {
                     return 330;
                 }
 		else{
-			return 380;
+			return 390;
 		}
 	}
 	
