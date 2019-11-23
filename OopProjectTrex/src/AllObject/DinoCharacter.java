@@ -14,7 +14,7 @@ import OptionClass.Resource;
 
 public class DinoCharacter {
 
-    public int score = 0;
+   
     public static int LAND_POSY = 370;
     public float GRAVITY = 0.2f;
 
