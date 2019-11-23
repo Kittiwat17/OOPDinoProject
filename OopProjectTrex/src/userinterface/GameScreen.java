@@ -53,8 +53,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private BufferedImage replayButtonImage;
     private BufferedImage gameOverButtonImage;
 
-    private int speedGameM = 10;
-    private int speedGameN = 1000;
+    private static int speedGameM = 9;
+    private static int speedGameN = 999999;
+    
+    private double scores = 0;
     public GameScreen() {
 
         bg1 = Resource.getResouceImage("Game Element/bg1.jpg");
@@ -97,30 +99,30 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             clouds.update();
             manager.update();
             mainCharacter.update();
-            backgroundPoint = -(score.getScore() % 1501) / 3;
-            if (score.getScore() >= 4500) {
+            backgroundPoint = -(scores % 1501) / 3;
+            if (scores >= 4500) {
                 countStage = 3;
-            } else if (score.getScore() >= 3000) {
+            } else if (scores >= 3000) {
                 countStage = 2;
-            } else if (score.getScore() >= 1500) {
+            } else if (scores >= 1500) {
                 countStage = 1;
             } else {
                 countStage = 0;
             }
             
-            if (highscore < score.getScore()) {
+            if (highscore < scores) {
                 nameHs = name;
-                highscore = score.getScore();
+                highscore = (int) scores;
             }
             
-            if (score.getScore() % 100 == 0) {
+            if (scores % 100 == 0) {
                 mainCharacter.playScoreSound();
             }
 
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
                 mainCharacter.setHp(mainCharacter.getHp() - 3);
-                mainCharacter.setSpeedX(mainCharacter.getSpeedX() + 0.1);
+                setSpeed(200);
                 
             }
             if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() <= 0) {
@@ -150,13 +152,16 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.setColor(Color.white);
                 g.drawString("Tap Spece bar to START", 400, 300);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
-                g.drawString("SCORE : " + score.getScore(), 860, 30);
+                g.drawString("SCORE : " + scores, 860, 30);
                 break;
             case GAME_PLAYING_STATE:
+                
+                scores += 0.03;
             case GAME_OVER_STATE:
                 clouds.draw(g);
                 manager.draw(g);
                 mainCharacter.draw(g);
+                
                 g.setColor(Color.white);
                 g.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
                 g.drawString("HP ", 30, 30);g.setColor(Color.white);
@@ -172,13 +177,13 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.fillRect(63, 17, mainCharacter.getHp(), 15);
                 g.setColor(Color.white);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
-                g.drawString("SCORE : " + score.getScore(), 860, 30);
+                g.drawString("SCORE : " + (int) scores, 860, 30);
                 if (gameState == GAME_OVER_STATE) {
                     g.drawImage(gameOverButtonImage, 400, 180, null);
                     g.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-                    g.drawString("You have " + score.getScore() + " score", 400, 220);
+                    g.drawString("You have " + (int) scores + " score", 400, 220);
                     g.drawImage(replayButtonImage, 480, 240, null);
-                    if (score.getScore() == highscore) {
+                    if ((int) scores == highscore) {
                         HighScoreStorage.saveName(nameHs);
                         HighScoreStorage.saveHighscore(highscore);
                     }
@@ -202,25 +207,31 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         long lag = 0;
 
         while (true) {
-            mainCharacter.setSpeedX(score.getScore()*2/1000 + 3);
-            fps += RunnerScore.getTimeUpdate() * 2;
+//            mainCharacter.setSpeedX(score.getScore()*2/1000 + 3);
+//            fps += RunnerScore.getTimeUpdate() * 2;
             gameUpdate();
             repaint();
-
-            endProcessGame = System.nanoTime();
-            elapsed = (lastTime + msPerFrame - System.nanoTime());
-            msSleep = (int) (elapsed / 1000000);
-            nanoSleep = (int) (elapsed % 1000000);
-            if (msSleep <= 0) {
-                lastTime = System.nanoTime();
-                continue;
-            }
+            
             try {
-                Thread.sleep(msSleep, nanoSleep);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.sleep(speedGameM, speedGameN);
+                
+//            endProcessGame = System.nanoTime();
+//            elapsed = (lastTime + msPerFrame - System.nanoTime());
+//            msSleep = (int) (elapsed / 1000000);
+//            nanoSleep = (int) (elapsed % 1000000);
+//            if (msSleep <= 0) {
+//                lastTime = System.nanoTime();
+//                continue;
+//            }
+//            try {
+//                Thread.sleep(msSleep, nanoSleep);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            lastTime = System.nanoTime();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GameScreen.class.getName()).log(Level.SEVERE, null, ex);
             }
-            lastTime = System.nanoTime();
            
         }
     }
@@ -281,7 +292,19 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         manager.reset();
         mainCharacter.dead(false);
         mainCharacter.reset();
-        score.reRunnerScore();
+        scores = 0;
+        speedGameM = 9;
+        speedGameN = 999999;
     }
-
+    
+    public static void setSpeed(int d){
+        if(speedGameN - d <= 0){
+            speedGameM -= 1;
+            speedGameN = 999999;
+        }
+        else{
+            speedGameN -= d;
+        }
+        
+    }
 }

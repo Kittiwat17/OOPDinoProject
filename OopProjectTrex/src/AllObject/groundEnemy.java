@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import userinterface.GameScreen;
 
 public class groundEnemy extends Enemy {
 	
@@ -19,16 +20,18 @@ public class groundEnemy extends Enemy {
 	private DinoCharacter mainCharacter;
 	private int enemyCounts = 0;
 	private Rectangle rectBound;
-	private BufferedImage listCactus[] = new BufferedImage[3];
+	private BufferedImage listCactus[][] = new BufferedImage[4][3];
         
 	public groundEnemy(DinoCharacter mainCharacter, int posX) {
                 
-                listCactus[0] = Resource.getResouceImage("Game Element/bush1.png");
-                listCactus[1] = Resource.getResouceImage("Game Element/stone1.png");
-                listCactus[2] = Resource.getResouceImage("Game Element/Tree1.png");
+                listCactus[0][0] = Resource.getResouceImage("Game Element/bush1.png");
+                listCactus[0][1] = Resource.getResouceImage("Game Element/stone1.png");
+                listCactus[0][2] = Resource.getResouceImage("Game Element/Tree1.png");
+                
+                 
                 int numRandom = getImageNum();
 		
-		this.image = listCactus[numRandom];
+		this.image = listCactus[GameScreen.countStage][numRandom];
                 this.posX = posX + ((100 - image.getWidth()) / 2);
 		
                 this.width = image.getWidth() - 10;

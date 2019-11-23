@@ -10,6 +10,7 @@ import java.util.List;
 
 import OptionClass.Resource;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -73,7 +74,7 @@ public class ObjectGameManager {
 			imageLand.posX = i * land1.getWidth();
 			setImageLand(imageLand ,1);
 			listLand.add(imageLand);
-                        listEnemies.add(createEnemy(0, i * 100));
+     
 		}
                 
                 
