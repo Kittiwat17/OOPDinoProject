@@ -45,7 +45,6 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private Thread runScore;
     private boolean isKeyPressed;
     public static int enemyAndLandCount = 0;
-    public static boolean blankBox = false;
 
     //array เก็บจำนวนobject ของ land
     private int gameState = START_GAME_STATE;
@@ -115,7 +114,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 highscore = (int) scores;
             }
             
-            if (scores % 100 == 0) {
+            if ((int) scores % 100 == 0) {
                 mainCharacter.playScoreSound();
             }
 

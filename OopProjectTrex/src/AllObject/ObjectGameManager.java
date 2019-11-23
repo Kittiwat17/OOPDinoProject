@@ -26,25 +26,16 @@ public class ObjectGameManager {
     public static final int LAND_POSY = 403;
     
     private List<landBox> listLand;
-    private BufferedImage land1;
-    private BufferedImage land2;
-    private BufferedImage land3;
+    private BufferedImage[] land = new BufferedImage[4];
+   
     private int pitCount = 0;
     
     
     private DinoCharacter mainCharacter;
     
+   
+    private BufferedImage pitList[][] = new BufferedImage[4][3];
     
-    private BufferedImage cactus1;
-    private BufferedImage cactus2;
-    private BufferedImage blank;
-    private BufferedImage pitOnly;
-    private BufferedImage pitL;
-    private BufferedImage pitR;
-    
-    private BufferedImage lavaOnly;
-    private BufferedImage lavaL;
-    private BufferedImage lavaR;
     private Random rand;
 	
     private ArrayList<Enemy> listEnemies;
@@ -55,23 +46,23 @@ public class ObjectGameManager {
     private landBox pre;   
     public ObjectGameManager(int width, DinoCharacter mainCharacter){
         this.mainCharacter = mainCharacter;
-        land1 = Resource.getResouceImage("Game Element/Floor1.jpg");
-		land2 = Resource.getResouceImage("Game Element/Floor2.jpg");
-		land3 = Resource.getResouceImage("data/land-3.png");
+        land[0] = Resource.getResouceImage("Game Element/Floor1.jpg");
+	land[1] = Resource.getResouceImage("Game Element/Floor2.jpg");
+	land[2] = Resource.getResouceImage("data/land-3.png");
                 
-                pitOnly = Resource.getResouceImage("Game Element/Hole1.png");
-                pitL = Resource.getResouceImage("Game Element/HoleL1.png");
-                pitR = Resource.getResouceImage("Game Element/HoleR1.png");
+        pitList[0][0] = Resource.getResouceImage("Game Element/Hole1.png");
+        pitList[0][1] = Resource.getResouceImage("Game Element/HoleL1.png");
+        pitList[0][2] = Resource.getResouceImage("Game Element/HoleR1.png");
                 
-                lavaOnly = Resource.getResouceImage("Game Element/lava1B.png");
-                lavaL = Resource.getResouceImage("Game Element/lava2Bver1.png");
-                lavaR = Resource.getResouceImage("Game Element/lava2Bver2.png");
-		int numberOfImageLand = width / land1.getWidth() + 2;
+           pitList[1][0] = Resource.getResouceImage("Game Element/lava1B.png");
+                pitList[1][1] = Resource.getResouceImage("Game Element/lava2Bver1.png");
+                pitList[1][2] = Resource.getResouceImage("Game Element/lava2Bver2.png");
+		int numberOfImageLand = width / land[0].getWidth() + 2;
                 listEnemies = new ArrayList<Enemy>();
 		listLand = new ArrayList<landBox>();
 		for(int i = 0; i < numberOfImageLand; i++) {
 			landBox imageLand = new landBox();
-			imageLand.posX = i * land1.getWidth();
+			imageLand.posX = i * land[0].getWidth();
 			setImageLand(imageLand ,1);
 			listLand.add(imageLand);
      
@@ -94,27 +85,23 @@ public class ObjectGameManager {
 
 			landBox element = itr.next();
                         if(element.numberOfPit != 0 && pre.numberOfPit != 0){
-                            if(GameScreen.countStage == 0){
-                               pre.image = pitL;
-                                element.image = pitR; 
-                            }
-                            else if(GameScreen.countStage == 1){
-                               pre.image = lavaL;
-                                element.image = lavaR; 
-                            }
+                            
+                               pre.image = pitList[GameScreen.countStage][1];
+                                element.image = pitList[GameScreen.countStage][2]; 
+                            
                             
                         }
-			element.posX = previousPosX + land1.getWidth();
+			element.posX = previousPosX + land[0].getWidth();
                        
-                        if(element.numberOfPit == 1 && element.posX <= mainCharacter.getPosX() && element.posX + land1.getWidth() >= mainCharacter.getPosX() + mainCharacter.getDinoWidth()-20){
+                        if(element.numberOfPit == 1 && element.posX <= mainCharacter.getPosX() && element.posX + land[0].getWidth() >= mainCharacter.getPosX() + mainCharacter.getDinoWidth()-20){
                             mainCharacter.setLAND_POSY(500);
                             System.out.println(element.numberOfPit);
                         }
-                        else if(element.numberOfPit == 2 && element.posX <= mainCharacter.getPosX()+ mainCharacter.getDinoWidth() -9 && element.posX + land1.getWidth() >= mainCharacter.getPosX()+ mainCharacter.getDinoWidth() - 9){
+                        else if(element.numberOfPit == 2 && element.posX <= mainCharacter.getPosX()+ mainCharacter.getDinoWidth() -9 && element.posX + land[0].getWidth() >= mainCharacter.getPosX()+ mainCharacter.getDinoWidth() - 9){
                             mainCharacter.setLAND_POSY(500);
                             System.out.println(element.numberOfPit);
                         }
-                        else if(element.numberOfPit == 0 && element.posX <= mainCharacter.getPosX() + mainCharacter.getDinoWidth() -20 && element.posX + land1.getWidth() >= mainCharacter.getPosX()){
+                        else if(element.numberOfPit == 0 && element.posX <= mainCharacter.getPosX() + mainCharacter.getDinoWidth() -20 && element.posX + land[0].getWidth() >= mainCharacter.getPosX()){
                             mainCharacter.setLAND_POSY(370);
                             System.out.println(" ");
                         }
@@ -127,9 +114,9 @@ public class ObjectGameManager {
 			e.update(0);
                       
 		}
-		if(firstElement.posX < -land1.getWidth()) {
+		if(firstElement.posX < -land[0].getWidth()) {
 			listLand.remove(firstElement);                       
-			firstElement.posX = previousPosX/*แกนx objectสุดท้าย พื้นชิ้นสุดท้าย*/ + land1.getWidth(); //ย้ายแกนxไปตัวสุดท้าย
+			firstElement.posX = previousPosX/*แกนx objectสุดท้าย พื้นชิ้นสุดท้าย*/ + land[0].getWidth(); //ย้ายแกนxไปตัวสุดท้าย
                         firstElement.numberOfPit = 0;
                         int lType = randomNumber(4);
                         int eType = randomNumber(4);
@@ -174,7 +161,7 @@ public class ObjectGameManager {
 		
                 int typeLand = type;
                 
-		if(GameScreen.countStage == 0){
+		
                     if(typeLand == 0) {
                     pitCount += 1;
                     if(pitCount >= 3){
@@ -182,46 +169,23 @@ public class ObjectGameManager {
                         pitCount = 0;                     
                     }
                     else{
-                        imgLand.image = pitOnly;
+                        imgLand.image = pitList[GameScreen.countStage][0];
                         imgLand.numberOfPit = pitCount;
                         
                     }
 		} else if(typeLand == 1) {
                         pitCount = 0;
-			imgLand.image = land1;
+			imgLand.image = land[GameScreen.countStage];
 		} else if(typeLand == 2) {
                         pitCount = 0;
-			imgLand.image = land1;
+			imgLand.image = land[GameScreen.countStage];
 		}  else {
                         pitCount = 0;
-                    	imgLand.image = land1;
+                    	imgLand.image = land[GameScreen.countStage];
                         
 		}
-                }
-                else if(GameScreen.countStage == 1){
-                    if(typeLand == 0) {
-                    pitCount += 1;
-                    if(pitCount >= 3){
-                        setImageLand(imgLand, randomNumber(3) + 1);
-                        pitCount = 0;                     
-                    }
-                    else{
-                        imgLand.image = lavaOnly;
-                        imgLand.numberOfPit = pitCount;
-                        
-                    }
-		} else if(typeLand == 1) {
-                        pitCount = 0;
-			imgLand.image = land2;
-		} else if(typeLand == 2) {
-                        pitCount = 0;
-			imgLand.image = land2;
-		}  else {
-                        pitCount = 0;
-                    	imgLand.image = land2;
-                        
-		}
-                }
+                
+                
 	}
     
     public Enemy createEnemy(int type, int posX){
@@ -266,10 +230,10 @@ public class ObjectGameManager {
     public void newStage(){
         listEnemies.clear();
         listLand.clear();
-        int numberOfImageLand = 1000 / land1.getWidth() + 2;
+        int numberOfImageLand = 1000 / land[0].getWidth() + 2;
             for(int i = 0; i < numberOfImageLand; i++) {
 			landBox imageLand = new landBox();
-			imageLand.posX = i * land1.getWidth();
+			imageLand.posX = i * land[0].getWidth();
 			setImageLand(imageLand ,1);
 			listLand.add(imageLand);
                         listEnemies.add(createEnemy(0, i * 100));
@@ -279,10 +243,10 @@ public class ObjectGameManager {
     public void reset(){
             listLand.clear();
             listEnemies.clear();
-            int numberOfImageLand = 1000 / land1.getWidth() + 2;
+            int numberOfImageLand = 1000 / land[0].getWidth() + 2;
             for(int i = 0; i < numberOfImageLand; i++) {
 			landBox imageLand = new landBox();
-			imageLand.posX = i * land1.getWidth();
+			imageLand.posX = i * land[0].getWidth();
 			setImageLand(imageLand ,1);
 			listLand.add(imageLand);
                         listEnemies.add(createEnemy(0, i * 100));
