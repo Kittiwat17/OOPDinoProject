@@ -63,9 +63,7 @@ public class groundEnemy extends Enemy {
 	public void draw(Graphics g) {
             if(enemyCounts == 0){
                 g.drawImage(image, (int) posX, Y_LAND - image.getHeight(), null);
-		g.setColor(Color.red);
-                Rectangle bound = getBound();
-		g.drawRect(bound.x, bound.y, bound.width, bound.height);
+		
             }
 		
 		
