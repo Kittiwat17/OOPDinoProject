@@ -51,21 +51,6 @@ public class HighScoreStorage {
         return name;
     }
     
-//    public static void saveHighscore(int hs, String n) {
-//        try {
-//            FileOutputStream fout = new FileOutputStream("Highscore.dat");
-//            DataOutputStream dout = new DataOutputStream(fout);
-//            
-//            dout.writeInt(hs);
-//            dout.writeUTF(n);
-//            
-//            dout.close();
-//            fout.close();
-//        } catch (IOException ex) {
-//            System.out.println("not save high score");
-//        }
-//    }
-    
     public static void saveHighscore(int hs) {
         try {
             FileOutputStream fout = new FileOutputStream("Highscore.dat");

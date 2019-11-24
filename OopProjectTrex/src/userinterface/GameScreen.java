@@ -30,6 +30,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     private BufferedImage bg1;
     private BufferedImage bg2;
+    private BufferedImage gameOver;
     private double backgroundPoint = 0;
     private BufferedImage[] Background = new BufferedImage[12];
     
@@ -61,6 +62,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
         bg1 = Resource.getResouceImage("Game Element/bg1.jpg");
         bg2 = Resource.getResouceImage("data/bg2.png");
+        gameOver = Resource.getResouceImage("Game Element/banner.png");
 
         Background[0] = bg1;
         Background[1] = bg2;
@@ -122,7 +124,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
                 mainCharacter.setHp(mainCharacter.getHp() - 3);
-                setSpeed(200);
+                setSpeed(500);
                 
             }
             if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() <= 0) {
@@ -293,6 +295,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         mainCharacter.dead(false);
         mainCharacter.reset();
         scores = 0;
+        countStage = 0;
         speedGameM = 9;
         speedGameN = 999999;
     }
