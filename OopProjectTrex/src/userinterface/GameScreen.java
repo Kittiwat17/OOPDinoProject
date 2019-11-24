@@ -295,6 +295,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         mainCharacter.dead(false);
         mainCharacter.reset();
         scores = 0;
+        countStage = 0;
         speedGameM = 9;
         speedGameN = 999999;
     }

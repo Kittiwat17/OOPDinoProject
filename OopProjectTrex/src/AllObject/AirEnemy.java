@@ -29,6 +29,12 @@ public class AirEnemy extends Enemy {
             listMons[0][0] = Resource.getResouceImage("Game Element/Mons1.png");
             listMons[0][1] = Resource.getResouceImage("Game Element/Mons2.png");
             
+            listMons[1][0] = Resource.getResouceImage("Game Element/flame1.png");
+            listMons[1][1] = Resource.getResouceImage("Game Element/flame2.png");
+            
+            listMons[2][0] = Resource.getResouceImage("Game Element/rowel1.png");
+            listMons[2][1] = Resource.getResouceImage("Game Element/rowel2.png");
+            
   
             flyAnim = new Animation(90);
             flyAnim.addFrame(listMons[GameScreen.countStage][0]);

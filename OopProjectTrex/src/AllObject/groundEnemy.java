@@ -28,7 +28,14 @@ public class groundEnemy extends Enemy {
                 listCactus[0][1] = Resource.getResouceImage("Game Element/stone1.png");
                 listCactus[0][2] = Resource.getResouceImage("Game Element/Tree1.png");
                 
-                 
+                listCactus[1][0] = Resource.getResouceImage("Game Element/bush2.png");
+                listCactus[1][1] = Resource.getResouceImage("Game Element/stone2.png");
+                listCactus[1][2] = Resource.getResouceImage("Game Element/Tree2.png");
+                
+                listCactus[2][0] = Resource.getResouceImage("Game Element/bush3.png");
+                listCactus[2][1] = Resource.getResouceImage("Game Element/stone3.png");
+                listCactus[2][2] = Resource.getResouceImage("Game Element/Tree3.png");
+                
                 int numRandom = getImageNum();
 		
 		this.image = listCactus[GameScreen.countStage][numRandom];
