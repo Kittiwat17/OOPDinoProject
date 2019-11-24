@@ -30,6 +30,7 @@ public class StartWindow extends JFrame implements ActionListener{
     private JTextField n;
     private JButton start;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    
     public StartWindow() {
         super("Dino Runner !!");
         setSize(SCREEN_WIDTH, 600);
@@ -65,12 +66,6 @@ public class StartWindow extends JFrame implements ActionListener{
         getContentPane().add(start);
         
         getContentPane().add(sp);
-        
-//        sp.add(lb);
-//        sp.add(n);
-//        sp.add(start);
-//        
-//        add(sp);
         
         start.addActionListener(this);
         n.addKeyListener(new KeyListener() {
