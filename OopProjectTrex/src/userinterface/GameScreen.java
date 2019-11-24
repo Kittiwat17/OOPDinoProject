@@ -30,6 +30,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     private BufferedImage bg1;
     private BufferedImage bg2;
+    private BufferedImage gameOver;
     private double backgroundPoint = 0;
     private BufferedImage[] Background = new BufferedImage[12];
     
@@ -61,6 +62,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
         bg1 = Resource.getResouceImage("Game Element/bg1.jpg");
         bg2 = Resource.getResouceImage("data/bg2.png");
+        gameOver = Resource.getResouceImage("Game Element/banner.png");
 
         Background[0] = bg1;
         Background[1] = bg2;
