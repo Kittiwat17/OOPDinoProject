@@ -122,7 +122,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
                 mainCharacter.setHp(mainCharacter.getHp() - 3);
-                setSpeed(200);
+                setSpeed(500);
                 
             }
             if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() <= 0) {

@@ -16,7 +16,7 @@ public class DinoCharacter {
 
     public int score = 0;
     public static int LAND_POSY = 370;
-    public float GRAVITY = 0.3f;
+    public float GRAVITY = 0.2f;
 
     private static final int NORMAL_RUN = 0;
     private static final int JUMPING = 1;
