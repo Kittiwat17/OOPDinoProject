@@ -145,16 +145,18 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         switch (gameState) {
             case START_GAME_STATE:
                 mainCharacter.draw(g);
+                g.setColor(Color.black);
+                g.setFont(new Font("Lucida Grande", Font.BOLD, 17));
+                g.drawString("HP ", 30, 30);
                 g.setColor(Color.white);
-                g.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-                g.drawString("HP ", 30, 30);g.setColor(Color.white);
                 g.fillRect(60, 14, 406, 21);
                 g.setColor(Color.green);
                 g.fillRect(63, 17, mainCharacter.getHp(), 15);
                 g.setColor(Color.white);
                 g.drawString("Tap Spece bar to START", 400, 300);
+                g.setColor(Color.black);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
-                g.drawString("SCORE : " + scores, 860, 30);
+                g.drawString("SCORE : " + (int) scores, 860, 30);
                 break;
             case GAME_PLAYING_STATE:
                 
@@ -164,9 +166,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 manager.draw(g);
                 mainCharacter.draw(g);
                 
+                g.setColor(Color.black);
+                g.setFont(new Font("Lucida Grande", Font.BOLD, 17));
+                g.drawString("HP ", 30, 30);
                 g.setColor(Color.white);
-                g.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-                g.drawString("HP ", 30, 30);g.setColor(Color.white);
                 g.fillRect(60, 14, 406, 21);
                 if (mainCharacter.getHp() > 265) {
                     g.setColor(Color.green);
@@ -177,14 +180,16 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     g.setColor(Color.red);
                 }
                 g.fillRect(63, 17, mainCharacter.getHp(), 15);
-                g.setColor(Color.white);
+                g.setColor(Color.black);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
                 g.drawString("SCORE : " + (int) scores, 860, 30);
                 if (gameState == GAME_OVER_STATE) {
+                    g.drawImage(gameOver, 100, 60, this);
                     g.drawImage(gameOverButtonImage, 400, 180, null);
-                    g.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-                    g.drawString("You have " + (int) scores + " score", 400, 220);
-                    g.drawImage(replayButtonImage, 480, 240, null);
+                    g.setColor(Color.white);
+                    g.setFont(new Font("Lucida Grande", Font.BOLD, 30));
+                    g.drawString("You have " + (int) scores + " score", 365, 300);
+//                    g.drawImage(replayButtonImage, 480, 370, null);
                     if ((int) scores == highscore) {
                         HighScoreStorage.saveName(nameHs);
                         HighScoreStorage.saveHighscore(highscore);
