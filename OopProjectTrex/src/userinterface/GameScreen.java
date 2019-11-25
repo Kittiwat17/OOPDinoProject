@@ -188,7 +188,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     g.drawImage(gameOverButtonImage, 400, 180, null);
                     g.setColor(Color.white);
                     g.setFont(new Font("Lucida Grande", Font.BOLD, 30));
-                    g.drawString("You have " + (int) scores + " score", 365, 300);
+                    g.drawString("You have " + (int) scores + " score", 360, 300);
 //                    g.drawImage(replayButtonImage, 480, 370, null);
                     if ((int) scores == highscore) {
                         HighScoreStorage.saveName(nameHs);
