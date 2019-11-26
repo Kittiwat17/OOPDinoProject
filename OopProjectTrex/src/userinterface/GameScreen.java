@@ -28,7 +28,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private int highscore;
     private int jumpcount = 0;
 
-    private BufferedImage bg1;
+    private BufferedImage bg;
     private BufferedImage bg2;
     private BufferedImage bg3;
     private BufferedImage bg4;
@@ -59,19 +59,17 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private static int speedGameM = 9;
     private static int speedGameN = 999999;
     
-    private double scores = 0;
+    private double scores = 1500;
+    int point = 0;
     public GameScreen() {
 
-        bg1 = Resource.getResouceImage("Game Element/bg1.jpg");
+        bg = Resource.getResouceImage("Game Element/allmapVer1.jpg");
         bg2 = Resource.getResouceImage("Game Element/bg2.jpg");
         bg3 = Resource.getResouceImage("Game Element/bg3.jpg");
         bg4 = Resource.getResouceImage("Game Element/bg4.jpg");
         gameOver = Resource.getResouceImage("Game Element/banner.png");
 
-        Background[0] = bg1;
-        Background[1] = bg2;
-        Background[2] = bg3;
-        Background[3] = bg4;
+        
 
         mainCharacter = new DinoCharacter();
         manager = new ObjectGameManager(GameWindow.SCREEN_WIDTH, mainCharacter);
@@ -105,13 +103,16 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             clouds.update();
             manager.update();
             mainCharacter.update();
-            backgroundPoint = -(scores % 1501) / 3;
-            if (scores >= 4500) {
+            backgroundPoint = -scores;
+            if (scores >= 5300) {
                 countStage = 3;
-            } else if (scores >= 3000) {
+                point = 3000;
+            } else if (scores >= 3400) {
                 countStage = 2;
-            } else if (scores >= 1500) {
+                point = 2000;
+            } else if (scores >= 1700) {
                 countStage = 1;
+                point = 800;
             } else {
                 countStage = 0;
             }
@@ -145,7 +146,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public void paint(Graphics g) {
         g.setColor(Color.decode("#c0c0c0"));
         g.fillRect(0, 0, getWidth(), getHeight());
-        g.drawImage(Background[countStage], (int) backgroundPoint, 0, null);
+        g.drawImage(bg, (int) backgroundPoint, 0, null);
         switch (gameState) {
             case START_GAME_STATE:
                 mainCharacter.draw(g);

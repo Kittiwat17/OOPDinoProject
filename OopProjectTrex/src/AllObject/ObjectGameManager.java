@@ -48,7 +48,7 @@ public class ObjectGameManager {
         land[0] = Resource.getResouceImage("Game Element/Floor1.jpg");
 		land[1] = Resource.getResouceImage("Game Element/Floor2.jpg");
 		land[2] = Resource.getResouceImage("Game Element/Floor3.jpg");
-                land[3] = Resource.getResouceImage("Game Element/Floor2.jpg");
+                land[3] = Resource.getResouceImage("Game Element/Floor4.jpg");
                 
                 pit[0][0] = Resource.getResouceImage("Game Element/Hole1.png");
                 pit[0][1] = Resource.getResouceImage("Game Element/HoleL1.png");
