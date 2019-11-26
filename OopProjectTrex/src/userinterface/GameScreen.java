@@ -59,8 +59,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private static int speedGameM = 9;
     private static int speedGameN = 999999;
     
-    private double scores = 1500;
-    int point = 0;
+    private double scores = 4490;
+    int point = 4190;
     public GameScreen() {
 
         bg = Resource.getResouceImage("Game Element/allmapVer1.jpg");
@@ -103,17 +103,33 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             clouds.update();
             manager.update();
             mainCharacter.update();
-            backgroundPoint = -scores;
-            if (scores >= 5300) {
+            backgroundPoint = -(scores / 3 + point);
+              
+            if(backgroundPoint <= -4300 && point < 4200){
+                point += 2;
+            }
+                        else if(backgroundPoint <= -2400 && point < 2800){
+                point += 2;
+            }
+                        else if(backgroundPoint <= -500 && point < 1400){
+                point += 2;
+            }
+            if (scores %6000 > 4500) {
                 countStage = 3;
-                point = 3000;
-            } else if (scores >= 3400) {
+              
+            }
+            else if (scores % 6000 > 3000) {
                 countStage = 2;
-                point = 2000;
-            } else if (scores >= 1700) {
+                
+            }
+
+            else if (scores % 6000 > 1500) {
                 countStage = 1;
-                point = 800;
-            } else {
+                
+            }
+            
+            else {
+                point = 0;
                 countStage = 0;
             }
             
@@ -150,6 +166,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         switch (gameState) {
             case START_GAME_STATE:
                 mainCharacter.draw(g);
+                manager.draw(g);
                 g.setColor(Color.black);
                 g.setFont(new Font("Gurmukhi MN", Font.BOLD, 17));
                 g.drawString("HP ", 30, 30);
@@ -303,9 +320,11 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private void resetGame() {
         manager.reset();
         mainCharacter.dead(false);
+         countStage = 0;
+         scores = 0;
         mainCharacter.reset();
-        scores = 0;
-        countStage = 0;
+       
+       point = 0;
         speedGameM = 9;
         speedGameN = 999999;
     }

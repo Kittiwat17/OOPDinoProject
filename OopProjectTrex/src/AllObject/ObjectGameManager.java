@@ -250,6 +250,7 @@ public class ObjectGameManager {
     public void reset(){
             listLand.clear();
             listEnemies.clear();
+            GameScreen.countStage = 0;
             int numberOfImageLand = 1000 / land[GameScreen.countStage].getWidth() + 2;
             for(int i = 0; i < numberOfImageLand; i++) {
 			landBox imageLand = new landBox();
