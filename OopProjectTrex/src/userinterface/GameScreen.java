@@ -77,8 +77,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         manager = new ObjectGameManager(GameWindow.SCREEN_WIDTH, mainCharacter);
 
         mainCharacter.setSpeedX(3);
-        replayButtonImage = Resource.getResouceImage("data/replay_button.png");
-        gameOverButtonImage = Resource.getResouceImage("data/gameover_text.png");
+//        replayButtonImage = Resource.getResouceImage("data/replay_button.png");
+//        gameOverButtonImage = Resource.getResouceImage("data/gameover_text.png");
 
         clouds = new Clouds(GameWindow.SCREEN_WIDTH, mainCharacter);
         score = new RunnerScore();
@@ -189,7 +189,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.drawString("SCORE : " + (int) scores, 860, 30);
                 if (gameState == GAME_OVER_STATE) {
                     g.drawImage(gameOver, 100, 60, this);
-                    g.drawImage(gameOverButtonImage, 400, 180, null);
+//                    g.drawImage(gameOverButtonImage, 400, 180, null);
                     g.setColor(Color.white);
                     g.setFont(new Font("Gurmukhi MN", Font.BOLD, 30));
                     g.drawString("You have " + (int) scores + " score", 360, 300);
