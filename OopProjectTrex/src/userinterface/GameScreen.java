@@ -146,7 +146,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             case START_GAME_STATE:
                 mainCharacter.draw(g);
                 g.setColor(Color.black);
-                g.setFont(new Font("Lucida Grande", Font.BOLD, 17));
+                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 17));
                 g.drawString("HP ", 30, 30);
                 g.setColor(Color.white);
                 g.fillRect(60, 14, 406, 21);
@@ -167,7 +167,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 mainCharacter.draw(g);
                 
                 g.setColor(Color.black);
-                g.setFont(new Font("Lucida Grande", Font.BOLD, 17));
+                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 17));
                 g.drawString("HP ", 30, 30);
                 g.setColor(Color.white);
                 g.fillRect(60, 14, 406, 21);
@@ -187,7 +187,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     g.drawImage(gameOver, 100, 60, this);
                     g.drawImage(gameOverButtonImage, 400, 180, null);
                     g.setColor(Color.white);
-                    g.setFont(new Font("Lucida Grande", Font.BOLD, 30));
+                    g.setFont(new Font("Gurmukhi MN", Font.BOLD, 30));
                     g.drawString("You have " + (int) scores + " score", 360, 300);
 //                    g.drawImage(replayButtonImage, 480, 370, null);
                     if ((int) scores == highscore) {

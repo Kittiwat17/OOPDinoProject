@@ -97,7 +97,7 @@ public class StartWindow extends JFrame implements ActionListener{
     public void paint(Graphics g) {
         g.drawImage(background, 0, 0, null);
         g.drawImage(head1, 240, 40, null);
-        g.drawImage(head2, 350, 170, null);
+        g.drawImage(head2, 360, 170, null);
     }
     
     public void startPage() {
