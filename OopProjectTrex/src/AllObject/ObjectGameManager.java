@@ -61,6 +61,10 @@ public class ObjectGameManager {
                 pit[2][0] = Resource.getResouceImage("Game Element/Chemis1B.png");
                 pit[2][1] = Resource.getResouceImage("Game Element/Chemis2Bver1.png");
                 pit[2][2] = Resource.getResouceImage("Game Element/Chemis2Bver2.png");
+                
+                pit[3][0] = Resource.getResouceImage("Game Element/rope1B.png");
+                pit[3][1] = Resource.getResouceImage("Game Element/rope2Bver1.png");
+                pit[3][2] = Resource.getResouceImage("Game Element/rope2Bver2.png");
 		int numberOfImageLand = width / land[0].getWidth() + 2;
                 listEnemies = new ArrayList<Enemy>();
 		listLand = new ArrayList<landBox>();

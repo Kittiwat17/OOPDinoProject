@@ -30,6 +30,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     private BufferedImage bg1;
     private BufferedImage bg2;
+    private BufferedImage bg3;
+    private BufferedImage bg4;
     private BufferedImage gameOver;
     private double backgroundPoint = 0;
     private BufferedImage[] Background = new BufferedImage[12];
@@ -61,13 +63,15 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public GameScreen() {
 
         bg1 = Resource.getResouceImage("Game Element/bg1.jpg");
-        bg2 = Resource.getResouceImage("data/bg2.png");
+        bg2 = Resource.getResouceImage("Game Element/bg2.jpg");
+        bg3 = Resource.getResouceImage("Game Element/bg3.jpg");
+        bg4 = Resource.getResouceImage("Game Element/bg4.jpg");
         gameOver = Resource.getResouceImage("Game Element/banner.png");
 
         Background[0] = bg1;
         Background[1] = bg2;
-        Background[2] = bg1;
-        Background[3] = bg2;
+        Background[2] = bg3;
+        Background[3] = bg4;
 
         mainCharacter = new DinoCharacter();
         manager = new ObjectGameManager(GameWindow.SCREEN_WIDTH, mainCharacter);

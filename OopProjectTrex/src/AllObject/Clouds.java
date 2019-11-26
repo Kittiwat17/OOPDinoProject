@@ -27,8 +27,8 @@ public class Clouds {
                 cloud[2][0] = Resource.getResouceImage("Game Element/CloudDrone1.png");
                 cloud[2][1] = Resource.getResouceImage("Game Element/CloudDrone2.png");
                 
-                cloud[3][0] = Resource.getResouceImage("Game Element/Cloud1.png");
-                cloud[3][1] = Resource.getResouceImage("Game Element/Cloud2.png");
+                cloud[3][0] = Resource.getResouceImage("Game Element/CloudSnow1.png");
+                cloud[3][1] = Resource.getResouceImage("Game Element/CloudSnow2.png");
 		listCloud = new ArrayList<ImageCloud>();
 		
 		ImageCloud imageCloud = new ImageCloud();
