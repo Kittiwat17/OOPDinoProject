@@ -320,6 +320,52 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
                         mainCharacter.down(true);
                     }
+                    else if (e.getKeyCode() == KeyEvent.VK_B) {
+                        if(scores % 6000 < 1500){
+                            scores = 4500;
+                            point = 4200;
+                            countStage = 3;
+                        }
+                        else if(scores % 6000 < 3000){
+                            scores = 0;
+                            point = 0;
+                            countStage = 0;
+                        }
+                        else if(scores % 6000 < 4500){
+                            scores = 1500;
+                            point = 1400;
+                            countStage = 1;
+                        }
+                        else if(scores % 6000 < 6000){
+                            scores = 3000;
+                            point = 2800;
+                            countStage = 2;
+                        }
+                    }
+                    else if (e.getKeyCode() == KeyEvent.VK_N) {
+                        if(scores % 6000 < 1500){
+                            scores = 1500;
+                            point = 1400;
+                            countStage = 1;
+                        }
+                        else if(scores % 6000 < 3000){
+                            scores = 3000;
+                            point = 2800;
+                            countStage = 2;
+                        }
+                        else if(scores % 6000 < 4500){
+                            
+                            scores = 4500;
+                            point = 4200;
+                            countStage = 3;
+                        }
+                        else if(scores % 6000 < 6000){
+                            
+                            scores = 0;
+                            point = 0;
+                            countStage = 0;
+                        }
+                    }
                     break;
                 case GAME_OVER_STATE:
                     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
