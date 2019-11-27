@@ -134,11 +134,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 highscore = (int) scores;
             }
             
-            if ((int) scores % 100 == 0) {
+            if ((int) scores % 200 == 0 && !(scores >= 0 && scores < 1)) {
                 mainCharacter.playScoreSound();
-            }
-            
-            if ((int) scores % 200 == 0) {
                 mainCharacter.setHp(mainCharacter.getHp() + 5);
                 if (mainCharacter.getHp() > 400) {
                     mainCharacter.setHp(400);
@@ -192,8 +189,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.drawString(": Jump and Double Jump", 470, 170);
                 
                 g.drawImage(Resource.getResouceImage("Game Element/DOWNbutton.png"), 300, 200, this);
-                g.drawString("or", 335, 220);
-                g.drawImage(Resource.getResouceImage("Game Element/Sbutton.png"), 360, 200, this);
+                g.drawString("or", 355, 220);
+                g.drawImage(Resource.getResouceImage("Game Element/Sbutton.png"), 400, 200, this);
                 g.drawString(": Down and Gravity", 470, 220);
                 
                 g.setFont(new Font("Gurmukhi MN", Font.PLAIN, 16));
