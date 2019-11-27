@@ -103,15 +103,15 @@ public class ObjectGameManager {
                        
                         if(element.numberOfPit == 1 && element.posX <= mainCharacter.getPosX() && element.posX + land[0].getWidth() >= mainCharacter.getPosX() + mainCharacter.getDinoWidth()-20){
                             mainCharacter.setLAND_POSY(500);
-                            System.out.println(element.numberOfPit);
+                       
                         }
                         else if(element.numberOfPit == 2 && element.posX <= mainCharacter.getPosX()+ mainCharacter.getDinoWidth() -9 && element.posX + land[0].getWidth() >= mainCharacter.getPosX()+ mainCharacter.getDinoWidth() - 9){
                             mainCharacter.setLAND_POSY(500);
-                            System.out.println(element.numberOfPit);
+                            
                         }
                         else if(element.numberOfPit == 0 && element.posX <= mainCharacter.getPosX() + mainCharacter.getDinoWidth() -20 && element.posX + land[0].getWidth() >= mainCharacter.getPosX()){
                             mainCharacter.setLAND_POSY(370);
-                            System.out.println(" ");
+                           
                         }
 			previousPosX = element.posX;
                         pre = element;

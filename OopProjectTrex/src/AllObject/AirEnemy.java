@@ -93,7 +93,7 @@ public class AirEnemy extends Enemy {
 
 	@Override
 	public boolean isOutOfScreen() {
-		if(posX < -flyAnim.getFrame().getWidth()) {
+		if(posX < -100) {
 			return true;
 		}
 		return false;

@@ -76,8 +76,7 @@ public class groundEnemy extends Enemy {
                 g.drawImage(image, (int) posX, Y_LAND - image.getHeight(), null);
 		
             
-		
-		
+			
 	}
 	
 	public Rectangle getBound() {
@@ -91,7 +90,7 @@ public class groundEnemy extends Enemy {
 
 	@Override
 	public boolean isOutOfScreen() {
-		if(posX < -image.getWidth()) {
+		if(posX < -100) {
 			return true;
 		}
 		return false;
