@@ -138,12 +138,12 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 mainCharacter.playScoreSound();
             }
             
-//            if ((int) scores % 200 == 0) {
-//                mainCharacter.setHp(mainCharacter.getHp() + 20);
-//                if (mainCharacter.getHp() > 400) {
-//                    mainCharacter.setHp(400);
-//                }
-//            }
+            if ((int) scores % 200 == 0) {
+                mainCharacter.setHp(mainCharacter.getHp() + 5);
+                if (mainCharacter.getHp() > 400) {
+                    mainCharacter.setHp(400);
+                }
+            }
 
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
@@ -182,21 +182,27 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.setColor(Color.white);
                 g.setFont(new Font("Gurmukhi MN", Font.BOLD, 32));
                 
-                g.drawString("How to play?", 400, 160);
+                g.drawString("How to play?", 380, 100);
                 g.setFont(new Font("Gurmukhi MN", Font.BOLD, 20));
-                g.drawImage(Resource.getResouceImage("Game Element/UPbutton.png"), 260, 200, this);
-                g.drawString("or", 295, 220);
-                g.drawImage(Resource.getResouceImage("Game Element/Wbutton.png"), 320, 200, this);
-                g.drawString("or", 355, 220);
-                g.drawImage(Resource.getResouceImage("Game Element/SPACEbutton.png"), 380, 200, this);
-                g.drawString(": Jump and Double Jump", 470, 220);
+                g.drawImage(Resource.getResouceImage("Game Element/UPbutton.png"), 260, 150, this);
+                g.drawString("or", 295, 170);
+                g.drawImage(Resource.getResouceImage("Game Element/Wbutton.png"), 320, 150, this);
+                g.drawString("or", 355, 170);
+                g.drawImage(Resource.getResouceImage("Game Element/SPACEbutton.png"), 380, 150, this);
+                g.drawString(": Jump and Double Jump", 470, 170);
                 
-                g.drawImage(Resource.getResouceImage("Game Element/DOWNbutton.png"), 300, 250, this);
-                g.drawString("or", 335, 270);
-                g.drawImage(Resource.getResouceImage("Game Element/Sbutton.png"), 360, 250, this);
-                g.drawString(": Down and Gravity", 470, 270);
+                g.drawImage(Resource.getResouceImage("Game Element/DOWNbutton.png"), 300, 200, this);
+                g.drawString("or", 335, 220);
+                g.drawImage(Resource.getResouceImage("Game Element/Sbutton.png"), 360, 200, this);
+                g.drawString(": Down and Gravity", 470, 220);
                 
-                g.drawString("Tap Spece bar to START", 380, 350);
+                g.setFont(new Font("Gurmukhi MN", Font.PLAIN, 16));
+                g.drawString("Don't bump into any obstacles, even flying things.", 285, 270);
+                g.drawString("For every 200 points your blood will be recovered 100", 270, 300);
+                g.drawString("But will you survive until then? ;)", 350, 330);
+                
+                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 18));
+                g.drawString("Tap Spece bar to START", 365, 390);
                 break;
             case GAME_PLAYING_STATE:
                 
@@ -231,6 +237,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.drawString("HP ", 30, 30);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
                 g.drawString("SCORE : " + (int) scores, 860, 30);
+                if ((int) scores%200 == 0 && !(scores >= 0 && scores < 1)) {
+                    g.setColor(Color.white);
+                    g.drawString("HP +100", (int) mainCharacter.getPosX() + 10, (int) mainCharacter.getPosY() - 20);
+                }
                 if (gameState == GAME_OVER_STATE) {
                     g.drawImage(gameOver, 100, 60, this);
                     g.setColor(Color.white);
