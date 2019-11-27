@@ -53,30 +53,25 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     //array เก็บจำนวนobject ของ land
     private int gameState = START_GAME_STATE;
 
-    private BufferedImage replayButtonImage;
-    private BufferedImage gameOverButtonImage;
-
     private static int speedGameM = 9;
     private static int speedGameN = 999999;
     
-    private double scores = 4490;
-    int point = 4190;
+    private double scores = 0;
+    int point = 0;
     public GameScreen() {
 
         bg = Resource.getResouceImage("Game Element/allmapVer1.jpg");
         bg2 = Resource.getResouceImage("Game Element/bg2.jpg");
         bg3 = Resource.getResouceImage("Game Element/bg3.jpg");
         bg4 = Resource.getResouceImage("Game Element/bg4.jpg");
-        gameOver = Resource.getResouceImage("Game Element/banner.png");
-
         
+//        up = 
+        gameOver = Resource.getResouceImage("Game Element/banner.png");
 
         mainCharacter = new DinoCharacter();
         manager = new ObjectGameManager(GameWindow.SCREEN_WIDTH, mainCharacter);
 
         mainCharacter.setSpeedX(3);
-//        replayButtonImage = Resource.getResouceImage("data/replay_button.png");
-//        gameOverButtonImage = Resource.getResouceImage("data/gameover_text.png");
 
         clouds = new Clouds(GameWindow.SCREEN_WIDTH, mainCharacter);
         score = new RunnerScore();
@@ -131,6 +126,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             else {
                 point = 0;
                 countStage = 0;
+                backgroundPoint = 0;
             }
             
             if (highscore < scores) {
@@ -138,14 +134,21 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 highscore = (int) scores;
             }
             
-            if (scores % 100 == 0) {
+            if ((int) scores % 100 == 0) {
                 mainCharacter.playScoreSound();
             }
+            
+//            if ((int) scores % 200 == 0) {
+//                mainCharacter.setHp(mainCharacter.getHp() + 20);
+//                if (mainCharacter.getHp() > 400) {
+//                    mainCharacter.setHp(400);
+//                }
+//            }
 
             if (manager.isCollision()) {
                 mainCharacter.playDeadSound();
                 mainCharacter.setHp(mainCharacter.getHp() - 3);
-                setSpeed(500);
+                setSpeed(5000);
                 
             }
             if (mainCharacter.getPosY() > 500 || mainCharacter.getHp() <= 0) {
@@ -165,32 +168,45 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         g.drawImage(bg, (int) backgroundPoint, 0, null);
         switch (gameState) {
             case START_GAME_STATE:
-                mainCharacter.draw(g);
+//                mainCharacter.draw(g);
                 manager.draw(g);
-                g.setColor(Color.black);
-                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 17));
-                g.drawString("HP ", 30, 30);
                 g.setColor(Color.white);
                 g.fillRect(60, 14, 406, 21);
                 g.setColor(Color.green);
                 g.fillRect(63, 17, mainCharacter.getHp(), 15);
-                g.setColor(Color.white);
-                g.drawString("Tap Spece bar to START", 400, 300);
                 g.setColor(Color.black);
+                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 17));
+                g.drawString("HP ", 30, 30);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
                 g.drawString("SCORE : " + (int) scores, 860, 30);
+                g.setColor(Color.white);
+                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 32));
+                
+                g.drawString("How to play?", 400, 160);
+                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 20));
+                g.drawImage(Resource.getResouceImage("Game Element/UPbutton.png"), 260, 200, this);
+                g.drawString("or", 295, 220);
+                g.drawImage(Resource.getResouceImage("Game Element/Wbutton.png"), 320, 200, this);
+                g.drawString("or", 355, 220);
+                g.drawImage(Resource.getResouceImage("Game Element/SPACEbutton.png"), 380, 200, this);
+                g.drawString(": Jump and Double Jump", 470, 220);
+                
+                g.drawImage(Resource.getResouceImage("Game Element/DOWNbutton.png"), 300, 250, this);
+                g.drawString("or", 335, 270);
+                g.drawImage(Resource.getResouceImage("Game Element/Sbutton.png"), 360, 250, this);
+                g.drawString(": Down and Gravity", 470, 270);
+                
+                g.drawString("Tap Spece bar to START", 380, 350);
                 break;
             case GAME_PLAYING_STATE:
                 
-                scores += 0.03;
+                scores += 0.05;
             case GAME_OVER_STATE:
                 clouds.draw(g);
                 manager.draw(g);
                 mainCharacter.draw(g);
                 
-                g.setColor(Color.black);
-                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 17));
-                g.drawString("HP ", 30, 30);
+                // HP Bar
                 g.setColor(Color.white);
                 g.fillRect(60, 14, 406, 21);
                 if (mainCharacter.getHp() > 265) {
@@ -202,16 +218,26 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     g.setColor(Color.red);
                 }
                 g.fillRect(63, 17, mainCharacter.getHp(), 15);
-                g.setColor(Color.black);
+                
+                // String
+                g.setFont(new Font("Gurmukhi MN", Font.BOLD, 17));
+                // color
+                if (scores%6000 <= 1520 || scores%6000 > 4520) {
+                    g.setColor(Color.black);
+                } else if (scores%6000 > 1520 && scores%6000 <= 4520) {
+                    g.setColor(Color.white);
+                }
+//                g.setColor(Color.black);
+                g.drawString("HP ", 30, 30);
                 g.drawString("HI : [ " + nameHs + " : " + highscore + " ]", 650, 30);
                 g.drawString("SCORE : " + (int) scores, 860, 30);
                 if (gameState == GAME_OVER_STATE) {
                     g.drawImage(gameOver, 100, 60, this);
-//                    g.drawImage(gameOverButtonImage, 400, 180, null);
                     g.setColor(Color.white);
                     g.setFont(new Font("Gurmukhi MN", Font.BOLD, 30));
-                    g.drawString("You have " + (int) scores + " score", 360, 300);
-//                    g.drawImage(replayButtonImage, 480, 370, null);
+                    g.drawString("You have " + (int) scores + " score", 370, 295);
+                    g.setFont(new Font("Gurmukhi MN", Font.BOLD, 14));
+                    g.drawString("Tap Spece bar to play again.", 420, 330);
                     if ((int) scores == highscore) {
                         HighScoreStorage.saveName(nameHs);
                         HighScoreStorage.saveHighscore(highscore);
@@ -281,10 +307,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     }
                     break;
                 case GAME_PLAYING_STATE:
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
                         mainCharacter.jump();
 
-                    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
                         mainCharacter.down(true);
                     }
                     break;
@@ -305,7 +331,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         isKeyPressed = false;
         if (gameState == GAME_PLAYING_STATE) {
-            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
                 mainCharacter.down(false);
             }
         }

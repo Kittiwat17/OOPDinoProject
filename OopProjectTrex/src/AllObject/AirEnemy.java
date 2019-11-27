@@ -11,7 +11,7 @@ import userinterface.GameScreen;
 
 public class AirEnemy extends Enemy {
 	
-	public static int Y_LAND = 295;
+	public static int Y_LAND = 350;
 	
 	private double posX;
 	private int width;
@@ -61,10 +61,10 @@ public class AirEnemy extends Enemy {
 		Random rand = new Random();
 		int type = rand.nextInt(2);
 		if(type == 0){
-                    return 310;
+                    return 270;
                 }
 		else{
-			return 390;
+			return 340;
 		}
 	}
 	

@@ -19,7 +19,7 @@ public class RunnerScore implements Runnable{
     public void run() {
         while (true) {            
             
-            GameScreen.setSpeed(1000);
+            GameScreen.setSpeed(10000);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
