@@ -154,7 +154,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 gameState = GAME_OVER_STATE;
                 mainCharacter.dead(true);
                 runScore.suspend();
-                System.out.println(runScore.getState());
+     
             }
         }
     }
@@ -326,7 +326,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                         gameState = GAME_PLAYING_STATE;
                         resetGame();
                         runScore.resume();
-                        System.out.println(runScore.getState());
+                      
                     }
                     break;
 
