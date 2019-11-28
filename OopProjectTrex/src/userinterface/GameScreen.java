@@ -14,6 +14,7 @@ import AllObject.ObjectGameManager;
 import AllObject.RunnerScore;
 import OptionClass.Resource;
 import java.awt.Font;
+import java.awt.Window;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
+    private StartWindow startWindow;
+    
     public static int countStage = 0;
     
     private String name;
@@ -195,7 +198,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 
                 g.setFont(new Font("Gurmukhi MN", Font.PLAIN, 16));
                 g.drawString("Don't bump into any obstacles, even flying things.", 285, 270);
-                g.drawString("For every 200 points your blood will be recovered 100", 270, 300);
+                g.drawString("For every 200 points your HP will be recovered 100", 282, 300);
                 g.drawString("But will you survive until then? ;)", 350, 330);
                 
                 g.setFont(new Font("Gurmukhi MN", Font.BOLD, 18));
@@ -243,8 +246,14 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     g.setColor(Color.white);
                     g.setFont(new Font("Gurmukhi MN", Font.BOLD, 30));
                     g.drawString("You have " + (int) scores + " score", 370, 295);
-                    g.setFont(new Font("Gurmukhi MN", Font.BOLD, 14));
-                    g.drawString("Tap Spece bar to play again.", 420, 330);
+                    
+                    g.setColor(Color.white);
+                    g.fillRect(340, 440, 340, 110);
+                    g.setColor(Color.black);
+                    g.setFont(new Font("Gurmukhi MN", Font.BOLD, 18));
+                    g.drawString("Tap Spece bar to play again.",390, 470);
+                    g.drawString("OR", 500, 500);
+                    g.drawString("Tap Enter to start new game.",390, 530);
                     if ((int) scores == highscore) {
                         HighScoreStorage.saveName(nameHs);
                         HighScoreStorage.saveHighscore(highscore);
@@ -323,7 +332,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     else if (e.getKeyCode() == KeyEvent.VK_B) {
                         if(scores % 6000 < 1500){
                             scores = 4500;
-                            point = 4200;
+                            point = 3500;
                             countStage = 3;
                         }
                         else if(scores % 6000 < 3000){
@@ -338,7 +347,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                         }
                         else if(scores % 6000 < 6000){
                             scores = 3000;
-                            point = 2800;
+                            point = 2100;
                             countStage = 2;
                         }
                     }
@@ -350,13 +359,13 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                         }
                         else if(scores % 6000 < 3000){
                             scores = 3000;
-                            point = 2800;
+                            point = 2100;
                             countStage = 2;
                         }
                         else if(scores % 6000 < 4500){
                             
                             scores = 4500;
-                            point = 4200;
+                            point = 3500;
                             countStage = 3;
                         }
                         else if(scores % 6000 < 6000){
@@ -372,7 +381,15 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                         gameState = GAME_PLAYING_STATE;
                         resetGame();
                         runScore.resume();
-                      
+                    }
+                    else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        startWindow = new StartWindow();
+                        startWindow.startPage();
+                        try {
+                            ((Window) getRootPane().getParent()).dispose();
+                        } catch (Exception NullPointerException) {
+                            System.out.println("ee");
+                        }
                     }
                     break;
 
