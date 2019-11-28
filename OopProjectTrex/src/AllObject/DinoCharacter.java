@@ -15,7 +15,7 @@ import OptionClass.Resource;
 public class DinoCharacter {
 
     public int score = 0;
-    public static int LAND_POSY = 370;
+    public static int LAND_POSY = 380;
     public float GRAVITY = 0.2f;
 
     private static final int NORMAL_RUN = 0;
@@ -49,17 +49,17 @@ public class DinoCharacter {
     public DinoCharacter() {
         posX = 50;
         posY = LAND_POSY;
-        normalState = Resource.getResouceImage("data/main-character1.png");
+        normalState = Resource.getResouceImage("data/main-character1.png"); //Game Element/dino_1.png
         downState = Resource.getResouceImage("data/main-character5.png");
         rectBound = new Rectangle();
         normalRunAnim = new Animation(90);
-        normalRunAnim.addFrame(Resource.getResouceImage("data/main-character1.png"));
-        normalRunAnim.addFrame(Resource.getResouceImage("data/main-character2.png"));
-        jumping = Resource.getResouceImage("data/main-character3.png");
+        normalRunAnim.addFrame(Resource.getResouceImage("Game Element/dino_1-4.png"));
+        normalRunAnim.addFrame(Resource.getResouceImage("Game Element/dino_1-5.png"));
+        jumping = Resource.getResouceImage("Game Element/dino_1.png");
         downRunAnim = new Animation(90);
-        downRunAnim.addFrame(Resource.getResouceImage("data/main-character5.png"));
-        downRunAnim.addFrame(Resource.getResouceImage("data/main-character6.png"));
-        deathImage = Resource.getResouceImage("data/main-character4.png");
+        downRunAnim.addFrame(Resource.getResouceImage("Game Element/dino_1-2.png"));
+        downRunAnim.addFrame(Resource.getResouceImage("Game Element/dino_1-3.png"));
+        deathImage = Resource.getResouceImage("Game Element/dino_dead.png");
 
         try {
             jumpSound = Applet.newAudioClip(new URL("file", "", "data/jump.wav"));
@@ -88,7 +88,7 @@ public class DinoCharacter {
                 g.drawImage(jumping, (int) posX, (int) getPosY(), null);
                 break;
             case DOWN_RUN:
-                g.drawImage(downRunAnim.getFrame(), (int) posX, (int) (getPosY() + 20), null);
+                g.drawImage(downRunAnim.getFrame(), (int) posX, (int) (getPosY() + 14), null);
                 break;
             case DEATH:
                 g.drawImage(deathImage, (int) posX, (int) getPosY(), null);

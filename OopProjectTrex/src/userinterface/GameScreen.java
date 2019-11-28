@@ -247,13 +247,12 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     g.setFont(new Font("Gurmukhi MN", Font.BOLD, 30));
                     g.drawString("You have " + (int) scores + " score", 370, 295);
                     
+                    g.drawImage(Resource.getResouceImage("Game Element/banner1.png"), 330, 440, this);
                     g.setColor(Color.white);
-                    g.fillRect(340, 440, 340, 110);
-                    g.setColor(Color.black);
                     g.setFont(new Font("Gurmukhi MN", Font.BOLD, 18));
                     g.drawString("Tap Spece bar to play again.",390, 470);
-                    g.drawString("OR", 500, 500);
-                    g.drawString("Tap Enter to start new game.",390, 530);
+                    g.drawString("OR", 500, 495);
+                    g.drawString("Tap Enter to start new game.",390, 520);
                     if ((int) scores == highscore) {
                         HighScoreStorage.saveName(nameHs);
                         HighScoreStorage.saveHighscore(highscore);
