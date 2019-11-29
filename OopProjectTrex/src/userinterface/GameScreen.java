@@ -245,7 +245,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     g.drawImage(gameOver, 100, 60, this);
                     g.setColor(Color.white);
                     g.setFont(new Font("Gurmukhi MN", Font.BOLD, 30));
-                    g.drawString("You have " + (int) scores + " score", 370, 295);
+                    g.drawString("You have " + (int) scores + " score", 370, 300);
                     
                     g.drawImage(Resource.getResouceImage("Game Element/banner1.png"), 330, 440, this);
                     g.setColor(Color.white);

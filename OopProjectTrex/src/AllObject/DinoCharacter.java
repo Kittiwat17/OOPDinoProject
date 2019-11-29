@@ -49,8 +49,8 @@ public class DinoCharacter {
     public DinoCharacter() {
         posX = 50;
         posY = LAND_POSY;
-        normalState = Resource.getResouceImage("data/main-character1.png"); //Game Element/dino_1.png
-        downState = Resource.getResouceImage("data/main-character5.png");
+        normalState = Resource.getResouceImage("Game Element/dino_1-4.png"); //Game Element/dino_1.png
+        downState = Resource.getResouceImage("Game Element/dino_1-2.png");
         rectBound = new Rectangle();
         normalRunAnim = new Animation(90);
         normalRunAnim.addFrame(Resource.getResouceImage("Game Element/dino_1-4.png"));
